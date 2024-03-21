@@ -10,7 +10,7 @@ from files import (
     RSA_SIZES,
     BASE_FILE_PATH as BASE_RANDOM_FILES_PATH,
 )
-from encryption import aes_encrypt
+from aes import aes_encrypt
 from icecream import ic
 
 
