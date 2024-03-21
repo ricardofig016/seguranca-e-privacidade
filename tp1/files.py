@@ -4,19 +4,19 @@ import string
 
 BASE_FILE_PATH = "random_files/"
 
+AES_SIZES = [8, 64, 512, 4096, 32768, 262144, 2097152]
+SHA_SIZES = [8, 64, 512, 4096, 32768, 262144, 2097152]
+RSA_SIZES = [2, 4, 8, 16, 32, 64, 128]
+
 
 def gen_files():
-    aes_sizes = [8, 64, 512, 4096, 32768, 262144, 2097152]
-    sha_sizes = [8, 64, 512, 4096, 32768, 262144, 2097152]
-    rsa_sizes = [2, 4, 8, 16, 32, 64, 128]
-
-    for size in aes_sizes:
+    for size in AES_SIZES:
         gen_random_file(f"aes_{size}.txt", size)
 
-    for size in sha_sizes:
+    for size in SHA_SIZES:
         gen_random_file(f"sha_{size}.txt", size)
 
-    for size in rsa_sizes:
+    for size in RSA_SIZES:
         gen_random_file(f"rsa_{size}.txt", size)
 
 
