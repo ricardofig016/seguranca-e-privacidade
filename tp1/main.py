@@ -43,8 +43,9 @@ def measure_aes():
         # verification
         # print(aes_decrypt(encrypted_data, key).decode("utf-8") == plaintext)
 
+
 def measure_rsa():
-     for size in RSA_SIZES:
+    for size in RSA_SIZES:
 
         file_path = os.path.join(BASE_RANDOM_FILES_PATH, f"rsa_{size}.txt")
         with open(file_path, "rb") as file:
@@ -67,13 +68,14 @@ def measure_rsa():
         average_time_elapsed = time_elapsed / iterations
         decryption_times[f"rsa_{size}"] = average_time_elapsed
 
+
 def measure_sha256():
     for size in SHA_SIZES:
 
         file_path = os.path.join(BASE_RANDOM_FILES_PATH, f"sha_{size}.txt")
         with open(file_path, "rb") as file:
             plainText = file.read()
-        
+
         # hash time
         timer = Timer(lambda: gen_hash(plainText))
         iterations = 100
@@ -82,13 +84,12 @@ def measure_sha256():
         hash_times[f"sha256_{size}"] = average_time_elapsed
 
 
-
 if __name__ == "__main__":
     gen_files()
 
     encryption_times = {}  # in seconds
     decryption_times = {}  # in seconds
-    hash_times = {}        # in seconds
+    hash_times = {}  # in seconds
 
     measure_aes()
     measure_rsa()
@@ -97,3 +98,15 @@ if __name__ == "__main__":
     ic(encryption_times)
     ic(decryption_times)
     ic(hash_times)
+
+    print("\n----------------------------------------------------\n")
+
+    formated_encryption_times = [
+        (int(key[4:]), encryption_times[key]) for key in encryption_times
+    ]
+    formated_decryption_times = [
+        (int(key[4:]), decryption_times[key]) for key in decryption_times
+    ]
+    formated_hash_times = [(int(key[7:]), hash_times[key]) for key in hash_times]
+
+    ic(formated_encryption_times, formated_decryption_times, formated_hash_times)
